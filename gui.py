@@ -39,11 +39,11 @@ def main_menu():
     button3.place(relx=0.5, y=40 + 2*(BUTTON_HEIGHT +  VERTICAL_SPACING), anchor='n', relwidth=0.7, height=BUTTON_HEIGHT)
 
 def calculate_GPA_screen():
-    GPA_screen_frame = Frame(root, bg="red", bd=5, relief="solid")
+    GPA_screen_frame = Frame(root, bg="#7a003c")
     GPA_screen_frame.place(relx=0.5, rely=0.5, anchor='c', relwidth=1, relheight=1)
 
-    button1 = Button(GPA_screen_frame, text="Back", command=main_menu)
-    button1.place(x=10, y=10)
+    back_button = Button(GPA_screen_frame, text="⬅ Back to Main Menu", command=main_menu, bg="#FDBF57", fg="#7a003c", font=("Garamond", 14))
+    back_button.place(x=10, y=10, relwidth=0.2, height=BUTTON_HEIGHT*0.7)
 
 def update_data_screen():
     loading_frame = Frame(buttons_frame, bg="#FDBF57")
@@ -61,7 +61,7 @@ def check_if_done(loading_frame, thread):
     else:
         # If the long running function is done, close the loading window and show a completion message
         loading_frame.destroy()
-        messagebox.showinfo("Done", "Classes updated successfully!")
+        messagebox.showinfo("Done", "Courses updated successfully!")
 
 main_menu()
 root.mainloop()

@@ -33,6 +33,7 @@ def update_class_data(filename):
         with open(filename, "a", encoding='utf-8') as f:
             for line in page_content:
                 f.write(line + "\n")
+    page_content = sorted(set(page_content))
     print(f"File updated, {num_page-1} pages parsed")
     print(f"Time elapsed: {round(end_time - start_time, 2)} seconds")
 
@@ -49,9 +50,3 @@ def format_cl_page_content(content):
             formatted_lines.append(" ".join(formatted_line[1:]))
 
     return formatted_lines
-
-def option1():
-    print("Option 1 selected")
-
-def option2():
-    print("Option 2 selected")
