@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from time import time
+from config import *
 
 def update_class_data(filename):
     # (str, str) -> None

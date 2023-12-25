@@ -10,6 +10,7 @@ root.geometry("1080x720")
 root.configure(bg="#7a003c")
 
 def main_menu():
+    # Main Frame for app
     main_frame = Frame(root, bg="#7a003c")
     main_frame.place(x=0, y=0, relwidth=1, relheight=1)
 
@@ -41,6 +42,32 @@ def main_menu():
 def calculate_GPA_screen():
     GPA_screen_frame = Frame(root, bg="#7a003c")
     GPA_screen_frame.place(relx=0.5, rely=0.5, anchor='c', relwidth=1, relheight=1)
+
+    fields_frame = Frame(GPA_screen_frame, bg="#7a003c", bd=2, relief="solid") # remove border once done
+    fields_frame.place(x=10, y=160, anchor='nw', relwidth=0.5, relheight=0.8)
+
+    def add_field():
+        course_row = Frame(fields_frame, bg="#7a003c")
+        course_row.pack(side='top', fill='x', padx=10)
+
+        course_code = Entry(course_row)
+        course_code.pack(side='left', padx=20, pady=10)
+
+        course_units = Entry(course_row)
+        course_units.pack(side='left', padx=20, pady=10)
+
+        course_grade = Entry(course_row)
+        course_grade.pack(side='left', padx=20, pady=10)
+
+    add_button = Button(GPA_screen_frame, text="Add Course", command=add_field, bg="#FDBF57", fg="#7a003c", font=("Garamond", 14))
+    add_button.place(x=10, y=80, anchor='nw', relwidth=0.2, height=BUTTON_HEIGHT*0.7)
+
+    course_code_label = Label(GPA_screen_frame, text="Course Code", bg="#7a003c", fg="#FDBF57", font=("Garamond", 14, 'bold'))
+    course_code_label.place(x=40, y=130, anchor='nw')
+    units_label = Label(GPA_screen_frame, text="Units", bg="#7a003c", fg="#FDBF57", font=("Garamond", 14, 'bold'))
+    units_label.place(x=205, y=130, anchor='nw')
+    grade_label = Label(GPA_screen_frame, text="Grade", bg="#7a003c", fg="#FDBF57", font=("Garamond", 14, 'bold'))
+    grade_label.place(x=30, y=130, anchor='nw')
 
     back_button = Button(GPA_screen_frame, text="⬅ Back to Main Menu", command=main_menu, bg="#FDBF57", fg="#7a003c", font=("Garamond", 14))
     back_button.place(x=10, y=10, relwidth=0.2, height=BUTTON_HEIGHT*0.7)
