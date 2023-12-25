@@ -1,4 +1,3 @@
-from logic import *
 import gui
 
 def main():
@@ -6,6 +5,8 @@ def main():
     COURSE_LISTINGS_FILENAME = "course_listings.txt"
 
     #update_class_data(COURSE_LISTINGS_FILENAME) # uncomment to update course listings
+    
+    gui # Launch GUI
 
 
 if __name__ == '__main__':

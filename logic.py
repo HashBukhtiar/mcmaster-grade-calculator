@@ -45,3 +45,9 @@ def format_cl_page_content(content):
             formatted_lines.append(" ".join(formatted_line[1:]))
 
     return formatted_lines
+
+def option1():
+    print("Option 1 selected")
+
+def option2():
+    print("Option 2 selected")
