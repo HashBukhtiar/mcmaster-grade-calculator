@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+from time import time
 
 def update_class_data(filename):
     # (str, str) -> None
@@ -12,7 +13,9 @@ def update_class_data(filename):
     num_page = 1
     URL = f"https://academiccalendars.romcmaster.ca/content.php?catoid=53&catoid=53&navoid=10775&filter%5Bitem_type%5D=3&filter%5Bonly_active%5D=1&filter%5B3%5D=1&filter%5Bcpage%5D={num_page}#acalog_template_course_filter"
 
+    print(f"Accessing '{URL}'...")
     print("Parsing pages...")
+    start_time = time()
     while True:
         response = requests.get(URL)
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -21,6 +24,7 @@ def update_class_data(filename):
         page_content = format_cl_page_content(text)
 
         if page_content == ['']:
+            end_time = time()
             break
 
         num_page += 1
@@ -29,8 +33,8 @@ def update_class_data(filename):
         with open(filename, "a", encoding='utf-8') as f:
             for line in page_content:
                 f.write(line + "\n")
-    
-    print(f"File updated, {num_page-1} pages parsed.")
+    print(f"File updated, {num_page-1} pages parsed")
+    print(f"Time elapsed: {round(end_time - start_time, 2)} seconds")
 
 def format_cl_page_content(content):
     # (str) -> list
