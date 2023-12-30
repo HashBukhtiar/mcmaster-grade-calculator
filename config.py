@@ -2,6 +2,7 @@ import re
 
 MCMASTER_COURSE_LISTINGS = "https://academiccalendars.romcmaster.ca/content.php?catoid=53&navoid=10775"
 COURSE_LISTINGS_FILENAME = "course_listings.txt"
+
 GRADE_SCALE = { # 12pt : (letter grade, percentage range, 4pt)
     0 : ("F", "0-49%", 0),
     1 : ("D-", "50-52%", 0.7),
@@ -17,5 +18,8 @@ GRADE_SCALE = { # 12pt : (letter grade, percentage range, 4pt)
     11 : ("A", "85-89%", 3.9),
     12 : ("A+", "90-100%", 4)
 }
+
 with open(COURSE_LISTINGS_FILENAME, 'r') as f: # All McMaster Course Codes in a List
     COURSE_CODES_LIST = [re.sub('[^a-zA-Z0-9 /]', '', line.split("-")[0].rstrip()) for line in f]
+
+course_data = {} # Dictionary of Course Data

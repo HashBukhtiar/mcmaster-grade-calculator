@@ -124,6 +124,12 @@ def calculate_GPA_screen():
     fields_frame = Frame(GPA_screen_frame, bg="#7a003c", bd=2, relief="solid") # remove border once done
     fields_frame.place(x=10, y=160, anchor='nw', relwidth=0.5, relheight=0.8)
 
+    field_entries = []
+
+    def place_save_button():
+        add_button_width = add_button.winfo_width()
+        save_button.place(x=10 + add_button_width + 20, y=80, anchor='nw', relwidth=0.2, height=BUTTON_HEIGHT*0.7)
+
     def add_field():
         course_row = Frame(fields_frame, bg="#7a003c")
         course_row.pack(side='top', fill='x', padx=10)
@@ -140,8 +146,25 @@ def calculate_GPA_screen():
         course_grade.pack(side='left', padx=20, pady=10)
         course_grade.config(font=('Garamond', 14, 'bold'), fg='#FDBF57')
 
+        # Entry list for later use when saving
+        field_entries.append((course_code, course_units, course_grade))
+
+    def save_semester():
+        for i, (course_code, course_units, course_grade) in enumerate(field_entries):
+            # Save the data in each Entry widget to the dictionary in config.py
+            course_data[f'course_{i+1}'] = {
+                'course_code': course_code.get(),
+                'course_units': course_units.get(),
+                'course_grade': course_grade.get()
+            }
+        print(calc_sem_GPA(course_data))
+
     add_button = Button(GPA_screen_frame, text="Add Course", command=add_field, bg="#FDBF57", fg="#7a003c", font=("Garamond", 14))
     add_button.place(x=10, y=80, anchor='nw', relwidth=0.2, height=BUTTON_HEIGHT*0.7)
+
+    save_button = Button(GPA_screen_frame, text="Save Semester", command=save_semester, bg="#FDBF57", fg="#7a003c", font=("Garamond", 14))
+
+    GPA_screen_frame.after(40, place_save_button)
 
     course_code_label = Label(GPA_screen_frame, text="Course Code", bg="#7a003c", fg="#FDBF57", font=("Garamond", 14, 'bold'))
     course_code_label.place(x=40, y=130, anchor='nw')

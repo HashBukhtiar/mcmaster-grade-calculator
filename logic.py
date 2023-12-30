@@ -51,3 +51,16 @@ def format_cl_page_content(content):
             formatted_lines.append(" ".join(formatted_line[1:]))
 
     return formatted_lines
+
+def calc_sem_GPA(course_data, round_to=1):
+    # (dict) -> float
+    # Takes a dictionary of course data and returns the semester GPA
+    
+    total_units = 0
+    total_grade_points = 0
+
+    for course in course_data.values():
+        total_units += float(course['course_units'])
+        total_grade_points += float(course['course_units']) * float(course['course_grade'])
+    
+    return round(total_grade_points / total_units, round_to)
