@@ -2,6 +2,7 @@ import re
 
 MCMASTER_COURSE_LISTINGS = "https://academiccalendars.romcmaster.ca/content.php?catoid=53&navoid=10775"
 COURSE_LISTINGS_FILENAME = "course_listings.txt"
+GPA_FILE = "gpa_data.json"
 
 GRADE_SCALE = { # 12pt : (letter grade, percentage range, 4pt)
     0 : ("F", "0-49%", 0),

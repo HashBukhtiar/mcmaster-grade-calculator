@@ -1,8 +1,19 @@
-import gui
+import logic
+import config
 
 def main():
-    
-    gui # Launch GUI
+    while True:
+        option_selected = logic.load_menu()
+
+        if option_selected == 1:
+            logic.view_gpa_breakdown(config.GPA_FILE)
+
+        elif option_selected == 2:
+            logic.add_classes(config.GPA_FILE, config.COURSE_LISTINGS)
+
+        else:
+            break
+
 
 
 if __name__ == '__main__':
